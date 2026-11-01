@@ -10,8 +10,7 @@ const VALID_CATEGORIES: Category[] = ['internal', 'eksternal', 'posisi-khusus']
 export function DepartmentsPage() {
   const [searchParams, setSearchParams] = useSearchParams()
   // Plain ref for the tab-reveal effect — not tied to useFadeIn's observer.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const sectionRef = useRef<any>(null)
+ const sectionRef = useRef<HTMLElement>(null)
 
   const rawKategori = searchParams.get('kategori') ?? 'internal'
   const kategori: Category = VALID_CATEGORIES.includes(rawKategori as Category)
