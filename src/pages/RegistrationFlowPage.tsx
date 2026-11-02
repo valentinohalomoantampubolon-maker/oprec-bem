@@ -24,21 +24,21 @@ const stages: Stage[] = [
   },
   {
     num: '02',
-    title: 'Pengumuman Seleksi Berkas',
-    description: 'Pengumuman hasil seleksi berkas administrasi calon staff.',
-    dateKey: 'documentSelection',
+    title: 'Pengumuman Hasil Oprec',
+    description: 'Pengumuman calon staff yang lolos tahap pendaftaran dan berhak mengikuti wawancara.',
+    dateKey: 'resultAnnouncement',
   },
   {
     num: '03',
-    title: 'Wawancara Online',
-    description: 'Pelaksanaan wawancara secara daring bagi peserta yang lolos seleksi berkas.',
-    dateKey: 'onlineInterview',
+    title: 'Wawancara Offline',
+    description: 'Wawancara langsung bersama Kepala Biro dan Kepala Departemen.',
+    dateKey: 'offlineInterview',
   },
   {
     num: '04',
-    title: 'Pengumuman Wawancara',
-    description: 'Pengumuman hasil wawancara online.',
-    dateKey: 'interviewAnnouncement',
+    title: 'Bidding Staff',
+    description: 'Penempatan calon staff ke biro oleh Kepala Biro dan Kepala Departemen, dilakukan setelah wawancara selesai.',
+    dateKey: 'staffBidding',
   },
   {
     num: '05',
@@ -56,11 +56,16 @@ function getDate(key: Stage['dateKey']): string | null {
 
 function formatDate(iso: string): string {
   try {
+    const d = new Date(iso)
+    const hm = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Jakarta' }).format(d)
+    if (hm === '00:00') {
+      return new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeZone: 'Asia/Jakarta' }).format(d)
+    }
     return new Intl.DateTimeFormat('id-ID', {
       dateStyle: 'long',
       timeStyle: 'short',
       timeZone: 'Asia/Jakarta',
-    }).format(new Date(iso)) + ' WIB'
+    }).format(d) + ' WIB'
   } catch {
     return 'Segera diumumkan'
   }
@@ -79,14 +84,14 @@ function getStageStatus(dateStr: string | null, endStr: string | null = null): S
       return 'pending'
     }
   }
-  if (now > target + 86400000) return 'done'
-  if (now > target - 86400000) return 'active'
+  if (now >= target + 86400000) return 'done'
+  if (now >= target) return 'active'
   return 'pending'
 }
 
 const REQ_UMUM = [
   'Mahasiswa aktif Fakultas Ilmu Komputer dan Teknologi Informasi (FIKTI) Universitas Gunadarma.',
-  'Berada pada semester 3 saat pendaftaran (Angkatan 2025).',
+  'Mahasiswa angkatan 2024 atau 2025.',
   'Tidak sedang menjalani cuti akademik.',
   'Tidak sedang menjalani sanksi akademik maupun disiplin dari fakultas atau universitas.',
   'Tidak merangkap jabatan sebagai ketua atau pengurus inti organisasi kemahasiswaan lain yang waktunya bertabrakan dengan BEM.',
