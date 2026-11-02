@@ -302,7 +302,7 @@ export const departments: Department[] = [
           {
             name: 'Award is a Must!',
             description:
-              'Program yang bertujuan untuk memberikan apresiasi kepada pengurus BEM FIKTI beserta para internship atas kerja keras mereka selama periode Kabinet Revarsa berlangsung.',
+              'Program yang bertujuan untuk memberikan apresiasi kepada pengurus BEM FIKTI beserta para internship atas kerja keras mereka selama periode Kabinet Revolusi Karsa berlangsung.',
           },
           {
             name: 'Karsa Care',

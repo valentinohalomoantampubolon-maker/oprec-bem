@@ -3,7 +3,7 @@ export function Footer() {
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__brand">
-          <img src="/assets/img/logo-revarsa.png" alt="Logo Kabinet Revarsa" width={40} height={41} />
+          <img src="/assets/img/logo-revarsa.png" alt="Logo Kabinet Revolusi Karsa" width={40} height={41} />
           <div>
           <p className="footer__meta-name">Kabinet Revolusi Karsa · 2026/2027</p>
           <p className="footer__meta-copy">

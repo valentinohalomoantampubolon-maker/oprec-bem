@@ -15,7 +15,7 @@ function shouldShowIntro(): boolean {
 }
 
 /**
- * Animasi pembuka logo Revarsa.
+ * Animasi pembuka logo Revolusi Karsa.
  * - Maksimal 2,5 detik, bisa dilewati (klik, tombol "Lewati", atau Esc).
  * - Hanya tampil sekali per sesi browser.
  * - Tidak tampil bila pengguna memilih "kurangi animasi" di perangkatnya.
@@ -53,7 +53,7 @@ export function Intro() {
     <div
       className={`intro${leaving ? ' intro--leaving' : ''}`}
       role="dialog"
-      aria-label="Animasi pembuka Kabinet Revarsa"
+      aria-label="Animasi pembuka Kabinet Revolusi Karsa"
       onClick={skip}
     >
       <div className="intro__glow" aria-hidden="true" />
@@ -61,13 +61,13 @@ export function Intro() {
         <div className="intro__ring" aria-hidden="true" />
         <img
           src="/assets/img/logo-revarsa.png"
-          alt="Logo Kabinet Revarsa"
+          alt="Logo Kabinet Revolusi Karsa"
           width={120}
           height={124}
           className="intro__logo"
         />
       </div>
-      <p className="intro__word" aria-hidden="true">REVARSA</p>
+      <p className="intro__word" aria-hidden="true">REVOLUSI KARSA</p>
       <p className="intro__sub">Open Recruitment Staff 2026/2027</p>
       <button
         type="button"

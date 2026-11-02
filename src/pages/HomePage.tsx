@@ -24,7 +24,6 @@ export function HomePage() {
     <>
       {/* ── 1. HERO ── */}
       <section className="hero" aria-labelledby="hero-title">
-        <div className="hero__bg-wordmark" aria-hidden="true">REVOLUSI KARSA</div>
         <div className="hero__glow-left" aria-hidden="true" />
         <div className="hero__glow-purple" aria-hidden="true" />
 
@@ -43,14 +42,10 @@ export function HomePage() {
               <span>BEM FIKTI UG</span>
             </h1>
 
-            <p className="hero__org fade-in">
-              Badan Eksekutif Mahasiswa<br />
-              Fakultas Ilmu Komputer dan Teknologi Informasi<br />
-              Universitas Gunadarma
-            </p>
-
             <p className="hero__tagline fade-in">Kabinet Revolusi Karsa · 2026/2027</p>
-            <p className="hero__tagline-sub fade-in">#Revolusi Pergerakan, Ciptakan Perubahan</p>
+            <p className="hero__org fade-in">
+              Badan Eksekutif Mahasiswa Fakultas Ilmu Komputer dan Teknologi Informasi, Universitas Gunadarma
+            </p>
 
             {/* Countdown */}
             {showCountdown && (
@@ -115,9 +110,6 @@ export function HomePage() {
               <Link to="/departemen" className="btn btn-outline">
                 Lihat Departemen
               </Link>
-              <Link to="/alur-pendaftaran" className="btn btn-outline">
-                Alur Pendaftaran
-              </Link>
             </div>
 
             <div className="hero__note fade-in">
@@ -136,7 +128,7 @@ export function HomePage() {
             <div className="hero__panel" aria-label="Daftar departemen dan posisi">
               <div className="panel__header">
                 <div>
-                  <p className="panel__label">Pendaftaran Terbuka</p>
+                  <p className="panel__label">Posisi yang Dibuka</p>
                   <p className="panel__count">7 Departemen · 15 Biro · 2 Posisi Khusus</p>
                 </div>
               </div>
@@ -173,7 +165,7 @@ export function HomePage() {
                     <Link to={`/posisi/${pos.slug}`} className="panel__item">
                       <span className="panel__item-name">{pos.name}</span>
                       <span className="panel__item-meta">
-                        <span style={{ color: 'var(--blue-400)', fontWeight: 500, fontSize: '0.7rem' }}>Terbuka</span>
+                        <span>1 orang</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                           <path d="m9 6 6 6-6 6" />
                         </svg>
@@ -328,7 +320,7 @@ export function HomePage() {
             </div>
           </div>
 
-          <div className="dep-grid">
+          <div className="dep-grid dep-grid--home">
             {departments.map((dep) => (
               <article key={dep.id} className="card dep-card fade-in">
                 <span className={`dep-card__tag dep-card__tag--${dep.category === 'Eksternal' ? 'ext' : 'int'}`}>
@@ -354,6 +346,27 @@ export function HomePage() {
                 </div>
               </article>
             ))}
+            <article className="card dep-card dep-card--special fade-in">
+              <span className="dep-card__tag dep-card__tag--special">Posisi Khusus</span>
+              <h3 className="dep-card__name">Sekretaris &amp; Bendahara</h3>
+              <p className="dep-card__tagline">Menjaga administrasi dan keuangan BEM FIKTI</p>
+              <ul className="dep-card__biro" aria-label="Posisi khusus">
+                {specialPositions.map((pos) => (
+                  <li key={pos.id} className="dep-card__biro-item">
+                    <span className="dep-card__biro-dot" aria-hidden="true" />
+                    {pos.name}
+                  </li>
+                ))}
+              </ul>
+              <div className="dep-card__footer">
+                <Link to="/departemen?kategori=posisi-khusus" className="dep-card__link">
+                  Lihat Posisi
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </Link>
+              </div>
+            </article>
           </div>
         </div>
       </section>
