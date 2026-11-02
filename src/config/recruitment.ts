@@ -12,20 +12,22 @@ export const recruitmentConfig = {
   timezone: "Asia/Jakarta",
 
   /** Ubah ke true HANYA setelah jadwal resmi ditetapkan */
-  scheduleConfirmed: false,
+  scheduleConfirmed: true,
 
   /** ISO 8601 dengan offset +07:00, contoh: "2026-11-01T08:00:00+07:00" */
-  registrationStart: null as string | null,
-  registrationEnd: null as string | null,
+  registrationStart: "2026-11-07T00:00:00+07:00" as string | null,
+  /** Opsi extend sampai 12 Nov: ubah ke "2026-11-12T23:59:00+07:00" */
+  registrationEnd: "2026-11-10T23:59:00+07:00" as string | null,
 
   /** URL Google Form pendaftaran resmi (isi saat form sudah aktif) */
-  registrationFormUrl: null as string | null,
+  registrationFormUrl: "https://forms.gle/3WK5AWmXex7y2gmb9" as string | null,
 
+  /** Jam 00:00 berarti hanya tanggal yang ditampilkan */
   announcementDates: {
-    documentSelection: null as string | null,
-    onlineInterview: null as string | null,
-    interviewAnnouncement: null as string | null,
-    finalAnnouncement: null as string | null,
+    resultAnnouncement: "2026-11-12T00:00:00+07:00" as string | null,
+    offlineInterview: "2026-11-15T00:00:00+07:00" as string | null,
+    staffBidding: "2026-11-15T00:00:00+07:00" as string | null,
+    finalAnnouncement: "2026-11-16T00:00:00+07:00" as string | null,
   },
 } as const satisfies RecruitmentConfig;
 
@@ -36,9 +38,9 @@ export interface RecruitmentConfig {
   registrationEnd: string | null;
   registrationFormUrl: string | null;
   announcementDates: {
-    documentSelection: string | null;
-    onlineInterview: string | null;
-    interviewAnnouncement: string | null;
+    resultAnnouncement: string | null;
+    offlineInterview: string | null;
+    staffBidding: string | null;
     finalAnnouncement: string | null;
   };
 }
