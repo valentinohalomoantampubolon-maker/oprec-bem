@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { Navbar } from './Navbar'
 import { Footer } from './Footer'
+import { Intro } from './Intro'
 
 export function Layout() {
   const { pathname } = useLocation()
@@ -13,6 +14,7 @@ export function Layout() {
 
   return (
     <>
+      <Intro />
       <Navbar />
       <main id="main-content" tabIndex={-1}>
         <Outlet />

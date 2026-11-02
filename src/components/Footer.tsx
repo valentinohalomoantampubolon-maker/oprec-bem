@@ -2,7 +2,9 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="footer__inner">
-        <div>
+        <div className="footer__brand">
+          <img src="/assets/img/logo-revarsa.png" alt="Logo Kabinet Revarsa" width={40} height={41} />
+          <div>
           <p className="footer__meta-name">Kabinet Revolusi Karsa · 2026/2027</p>
           <p className="footer__meta-copy">
             © 2026 BEM FIKTI Universitas Gunadarma
@@ -10,6 +12,7 @@ export function Footer() {
           <p style={{ fontSize: 'var(--text-xs)', marginTop: 'var(--space-1)', color: 'rgba(255,255,255,0.35)' }}>
             Badan Eksekutif Mahasiswa Fakultas Ilmu Komputer dan Teknologi Informasi
           </p>
+          </div>
         </div>
         <ul className="footer__social" aria-label="Media sosial BEM FIKTI">
           <li>
