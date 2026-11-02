@@ -1,62 +1,197 @@
 import { useEffect } from 'react'
-import { stages, stageStatus, shortDate, longDate } from '../config/schedule'
-import { PageHead } from '../components/PageHead'
-import { RegisterButton } from '../components/RegisterButton'
+import { Link } from 'react-router-dom'
+import { recruitmentConfig } from '../config/recruitment'
+import { useFadeIn } from '../hooks/useFadeIn'
+
+type StageStatus = 'pending' | 'active' | 'done'
+
+interface Stage {
+  num: string
+  title: string
+  description: string
+  dateKey: keyof typeof recruitmentConfig.announcementDates | 'registrationStart' | 'registrationEnd'
+  /** Tanggal akhir bila tahap ini berupa rentang waktu */
+  endKey?: 'registrationEnd'
+}
+
+const stages: Stage[] = [
+  {
+    num: '01',
+    title: 'Pendaftaran Staff',
+    description: 'Pendaftaran dan pengisian berkas calon staff melalui formulir resmi yang tersedia.',
+    dateKey: 'registrationStart',
+    endKey: 'registrationEnd',
+  },
+  {
+    num: '02',
+    title: 'Pengumuman Hasil Oprec',
+    description: 'Pengumuman calon staff yang lolos tahap pendaftaran dan berhak mengikuti wawancara.',
+    dateKey: 'resultAnnouncement',
+  },
+  {
+    num: '03',
+    title: 'Wawancara Offline',
+    description: 'Wawancara langsung bersama Kepala Biro dan Kepala Departemen.',
+    dateKey: 'offlineInterview',
+  },
+  {
+    num: '04',
+    title: 'Bidding Staff',
+    description: 'Penempatan calon staff ke biro oleh Kepala Biro dan Kepala Departemen, dilakukan setelah wawancara selesai.',
+    dateKey: 'staffBidding',
+  },
+  {
+    num: '05',
+    title: 'Pengumuman Final',
+    description: 'Pengumuman akhir calon staff yang dinyatakan lolos menjadi pengurus BEM FIKTI.',
+    dateKey: 'finalAnnouncement',
+  },
+]
+
+function getDate(key: Stage['dateKey']): string | null {
+  if (key === 'registrationStart') return recruitmentConfig.registrationStart
+  if (key === 'registrationEnd') return recruitmentConfig.registrationEnd
+  return recruitmentConfig.announcementDates[key as keyof typeof recruitmentConfig.announcementDates]
+}
+
+function formatDate(iso: string): string {
+  try {
+    const d = new Date(iso)
+    const hm = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Jakarta' }).format(d)
+    if (hm === '00:00') {
+      return new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeZone: 'Asia/Jakarta' }).format(d)
+    }
+    return new Intl.DateTimeFormat('id-ID', {
+      dateStyle: 'long',
+      timeStyle: 'short',
+      timeZone: 'Asia/Jakarta',
+    }).format(d) + ' WIB'
+  } catch {
+    return 'Segera diumumkan'
+  }
+}
+
+function getStageStatus(dateStr: string | null, endStr: string | null = null): StageStatus {
+  if (!recruitmentConfig.scheduleConfirmed || !dateStr) return 'pending'
+  const target = new Date(dateStr).getTime()
+  const now = Date.now()
+  if (isNaN(target)) return 'pending'
+  if (endStr) {
+    const end = new Date(endStr).getTime()
+    if (!isNaN(end)) {
+      if (now > end) return 'done'
+      if (now >= target) return 'active'
+      return 'pending'
+    }
+  }
+  if (now >= target + 86400000) return 'done'
+  if (now >= target) return 'active'
+  return 'pending'
+}
 
 const REQ_UMUM = [
   'Mahasiswa aktif Fakultas Ilmu Komputer dan Teknologi Informasi (FIKTI) Universitas Gunadarma.',
-  'Angkatan 2024 atau 2025.',
-  'Tidak sedang cuti akademik.',
+  'Mahasiswa angkatan 2024 atau 2025.',
+  'Tidak sedang menjalani cuti akademik.',
   'Tidak sedang menjalani sanksi akademik maupun disiplin dari fakultas atau universitas.',
-  'Tidak menjabat ketua atau pengurus inti organisasi lain yang waktunya bertabrakan dengan BEM.',
-  'Bersedia mengikuti seluruh tahap seleksi.',
+  'Tidak merangkap jabatan sebagai ketua atau pengurus inti organisasi kemahasiswaan lain yang waktunya bertabrakan dengan BEM.',
+  'Bersedia mengikuti seluruh rangkaian seleksi dan mematuhi keputusan panitia seleksi.',
 ]
 
 const REQ_BERKAS = [
-  'Formulir pendaftaran online yang terisi lengkap.',
-  'Foto formal berpakaian rapi (JPG atau PNG).',
-  'Scan atau foto KTM yang masih aktif.',
-  'Curriculum vitae (CV) terbaru.',
+  'Formulir pendaftaran online yang sudah diisi lengkap.',
+  'Foto formal berpakaian rapi (format JPG/PNG).',
+  'Scan atau foto KTM (Kartu Tanda Mahasiswa) aktif.',
+  'Curriculum Vitae (CV) terbaru.',
 ]
 
 const REQ_TAMBAHAN = [
-  'Setiap pendaftar hanya memilih satu departemen.',
-  'Keputusan panitia seleksi bersifat final.',
-  'Pendaftar yang tidak memenuhi syarat dinyatakan gugur.',
+  'Peserta hanya dapat mendaftar pada satu departemen.',
+  'Keputusan panitia seleksi bersifat final dan tidak dapat diganggu gugat.',
+  'Peserta yang tidak memenuhi persyaratan secara otomatis dinyatakan gugur.',
 ]
 
-const statusText = { done: 'Selesai', active: 'Sedang berlangsung', pending: '' } as const
-
 export function RegistrationFlowPage() {
+  const ref = useFadeIn<HTMLDivElement>()
+  const reqRef = useFadeIn<HTMLDivElement>()
+
   useEffect(() => {
-    document.title = 'Alur dan Syarat | Oprec Staf BEM FIKTI 2026/2027'
+    document.title = 'Alur Pendaftaran | OPREC Staff BEM FIKTI 2026/2027'
   }, [])
 
   return (
     <>
-      <PageHead crumbs={[{ label: 'Alur dan syarat' }]} title="Alur dan syarat pendaftaran">
-        <p>Lima tahap, dari mengisi formulir sampai pengumuman akhir. Siapkan berkas sebelum formulir dibuka.</p>
-      </PageHead>
+      {/* Page hero */}
+      <div className="page-hero">
+        <div className="page-hero__glow" aria-hidden="true" />
+        <div className="page-hero__inner">
+          <nav className="breadcrumb" aria-label="Navigasi halaman">
+            <Link to="/">Beranda</Link>
+            <span className="breadcrumb__sep" aria-hidden="true">/</span>
+            <span className="breadcrumb__current" aria-current="page">Alur Pendaftaran</span>
+          </nav>
+          <h1 className="page-hero__title">Alur Pendaftaran</h1>
+          <p className="page-hero__body">
+            Lima tahapan seleksi Staff BEM FIKTI 2026/2027. Jadwal akan diperbarui setelah diumumkan secara resmi.
+          </p>
+        </div>
+      </div>
 
-      <section className="block block--white" aria-labelledby="h-alur">
-        <div className="wrap">
-          <div className="block__head">
-            <h2 id="h-alur" className="h2">Tahap seleksi</h2>
-          </div>
-          <ol className="steps">
-            {stages.map((s, i) => {
-              const st = stageStatus(s)
+      {/* Timeline */}
+      <section className="section section-bg-white" aria-labelledby="timeline-title" ref={ref}>
+        <div className="container">
+          <p className="eyebrow fade-in">Timeline Seleksi</p>
+          <h2 id="timeline-title" className="section-title fade-in">Tahapan Seleksi</h2>
+
+          {!recruitmentConfig.scheduleConfirmed && (
+            <div style={{
+              marginTop: 'var(--space-6)',
+              padding: 'var(--space-4) var(--space-5)',
+              background: 'var(--green-50)',
+              border: '1px solid rgba(193,63,251,0.25)',
+              borderRadius: 'var(--radius-md)',
+              display: 'flex',
+              gap: 'var(--space-3)',
+              alignItems: 'flex-start',
+              fontSize: 'var(--text-sm)',
+              color: 'var(--green-800)',
+            }} role="status" className="fade-in">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink: 0, marginTop: 1 }}>
+                <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 3" />
+              </svg>
+              <span>
+                Jadwal seleksi akan diumumkan melalui media sosial resmi BEM FIKTI setelah pendaftaran resmi dibuka.
+                Pantau Instagram <strong>@ug_bemfikti</strong>.
+              </span>
+            </div>
+          )}
+
+          <ol className="timeline fade-in" aria-label="Tahapan seleksi staff">
+            {stages.map((stage) => {
+              const dateStr = getDate(stage.dateKey)
+              const endStr = stage.endKey ? getDate(stage.endKey) : null
+              const status: StageStatus = getStageStatus(dateStr, endStr)
               return (
-                <li key={s.title} className={`step step--${st}`}>
-                  <span className="step__date">{shortDate(s)}</span>
-                  <div className="step__body">
-                    <h3 className="step__title">
-                      <span className="step__num">{i + 1}</span>
-                      {s.title}
-                      {statusText[st] && <span className="step__status">{statusText[st]}</span>}
-                    </h3>
-                    <p>{s.description}</p>
-                    <p className="step__when">{longDate(s)}</p>
+                <li key={stage.num} className="timeline-item">
+                  <span
+                    className={`timeline-dot${status === 'done' ? ' timeline-dot--done' : status === 'active' ? ' timeline-dot--active' : ''}`}
+                    aria-label={`Tahap ${stage.num}`}
+                  >
+                    {stage.num}
+                  </span>
+                  <div className="card timeline-card">
+                    <h3 className="timeline-card__title">{stage.title}</h3>
+                    <p className="timeline-card__desc">{stage.description}</p>
+                    <p className={`timeline-card__date${!dateStr || !recruitmentConfig.scheduleConfirmed ? ' timeline-card__date--pending' : ''}`}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" />
+                      </svg>
+                      {dateStr && recruitmentConfig.scheduleConfirmed
+                        ? endStr
+                          ? `${formatDate(dateStr)} – ${formatDate(endStr)}`
+                          : formatDate(dateStr)
+                        : 'Jadwal akan diumumkan'}
+                    </p>
                   </div>
                 </li>
               )
@@ -65,27 +200,108 @@ export function RegistrationFlowPage() {
         </div>
       </section>
 
-      <section className="block" aria-labelledby="h-syarat">
-        <div className="wrap">
-          <div className="block__head">
-            <h2 id="h-syarat" className="h2">Syarat dan berkas</h2>
-            <p className="lede">Khusus mahasiswa aktif Universitas Gunadarma.</p>
+      {/* Persyaratan */}
+      <section className="section" aria-labelledby="req-title" ref={reqRef}>
+        <div className="container">
+          <p className="eyebrow fade-in">Calon Staff BEM FIKTI</p>
+          <h2 id="req-title" className="section-title fade-in">Persyaratan Pendaftaran</h2>
+
+          <div className="gunadarma-badge fade-in" style={{ marginTop: 'var(--space-4)' }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            Khusus mahasiswa aktif Universitas Gunadarma
           </div>
-          <div className="reqs">
-            <div>
-              <h3 className="h4">Syarat pendaftar</h3>
-              <ul className="ticks">{REQ_UMUM.map((r) => <li key={r}>{r}</li>)}</ul>
+
+          <div className="req-grid">
+            {/* Persyaratan Umum */}
+            <div className="req-panel fade-in">
+              <h3 className="req-panel__title">
+                <span className="req-panel__icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="8.5" cy="7" r="4" />
+                    <path d="M20 8v6M23 11h-6" />
+                  </svg>
+                </span>
+                Persyaratan Umum
+              </h3>
+              <ul className="req-list">
+                {REQ_UMUM.map((r, i) => (
+                  <li key={i} className="req-item">
+                    <span className="req-check" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="m5 12 4.5 4.5L19 7" />
+                      </svg>
+                    </span>
+                    {r}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div>
-              <h3 className="h4">Berkas yang disiapkan</h3>
-              <ul className="ticks">{REQ_BERKAS.map((r) => <li key={r}>{r}</li>)}</ul>
-              <h3 className="h4">Ketentuan</h3>
-              <ul className="ticks">{REQ_TAMBAHAN.map((r) => <li key={r}>{r}</li>)}</ul>
-              <p className="note">Syarat khusus per departemen, bila ada, diumumkan di Instagram @ug_bemfikti.</p>
+
+            {/* Berkas Administrasi */}
+            <div className="req-panel fade-in">
+              <h3 className="req-panel__title">
+                <span className="req-panel__icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                    <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+                  </svg>
+                </span>
+                Berkas Administrasi
+              </h3>
+              <ul className="req-list">
+                {REQ_BERKAS.map((r, i) => (
+                  <li key={i} className="req-item">
+                    <span className="req-check" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="m5 12 4.5 4.5L19 7" />
+                      </svg>
+                    </span>
+                    {r}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-          <div className="closing__row">
-            <RegisterButton />
+
+            {/* Persyaratan Khusus (placeholder) */}
+            <div className="req-panel fade-in">
+              <h3 className="req-panel__title">
+                <span className="req-panel__icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false">
+                    <path d="M9 12h6M9 16h6M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z" />
+                  </svg>
+                </span>
+                Persyaratan Khusus
+              </h3>
+              <div style={{ padding: 'var(--space-4)', background: 'var(--surface-subtle)', borderRadius: 'var(--radius-md)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                Persyaratan khusus per departemen akan diumumkan bersama jadwal resmi. Pantau Instagram <strong style={{ color: 'var(--text-secondary)' }}>@ug_bemfikti</strong> untuk informasi terbaru.
+              </div>
+            </div>
+
+            {/* Ketentuan Tambahan */}
+            <div className="req-panel fade-in">
+              <h3 className="req-panel__title">
+                <span className="req-panel__icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false">
+                    <circle cx="12" cy="12" r="9" /><path d="M12 8v4M12 16h.01" />
+                  </svg>
+                </span>
+                Ketentuan Tambahan
+              </h3>
+              <ul className="req-list">
+                {REQ_TAMBAHAN.map((r, i) => (
+                  <li key={i} className="req-item">
+                    <span className="req-check" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="m5 12 4.5 4.5L19 7" />
+                      </svg>
+                    </span>
+                    {r}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
