@@ -139,32 +139,6 @@ export function AboutPage() {
           </div>
         </section>
 
-        {/* Informasi belum terverifikasi */}
-        <section className="section section-bg-white">
-          <div className="container">
-            <div style={{
-              padding: 'var(--space-5) var(--space-6)',
-              background: 'var(--blue-50)',
-              border: '1px solid rgba(90,56,209,0.2)',
-              borderRadius: 'var(--radius-lg)',
-              display: 'flex',
-              gap: 'var(--space-4)',
-              alignItems: 'flex-start',
-            }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue-700)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" style={{ flexShrink: 0, marginTop: 2 }}>
-                <circle cx="12" cy="12" r="9" /><path d="M12 8v4M12 16h.01" />
-              </svg>
-              <div>
-                <p style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, color: 'var(--blue-800)', fontSize: 'var(--text-sm)', marginBottom: 'var(--space-2)' }}>
-                  Informasi Masih Dikonfirmasi
-                </p>
-                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--blue-700)', lineHeight: 1.6 }}>
-                  Detail visi, misi, dan profil resmi kabinet akan diperbarui setelah dokumen resmi tersedia. Pantau Instagram <strong>@ug_bemfikti</strong> untuk informasi terbaru.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
     </>
   )

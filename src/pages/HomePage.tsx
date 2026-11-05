@@ -112,15 +112,22 @@ export function HomePage() {
               </Link>
             </div>
 
-            <div className="hero__note fade-in">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" style={{ flexShrink: 0, marginTop: 1 }}>
-                <circle cx="12" cy="12" r="9" /><path d="M12 8v4M12 16h.01" />
+            <a
+              className="hero__note hero__note--link fade-in"
+              href="https://instagram.com/ug_bemfikti"
+              aria-label="Buka Instagram BEM FIKTI (@ug_bemfikti)"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" style={{ flexShrink: 0 }}>
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r=".5" />
               </svg>
               <span>
-                Informasi resmi diumumkan melalui Instagram{' '}
-                <strong>@ug_bemfikti</strong>.
+                Informasi resmi diumumkan melalui <strong>Instagram</strong>
               </span>
-            </div>
+            </a>
           </div>
 
           {/* Right panel */}

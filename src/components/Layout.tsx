@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { Navbar } from './Navbar'
 import { Footer } from './Footer'
 import { Intro } from './Intro'
+import { WhatsAppButton } from './WhatsAppButton'
 
 export function Layout() {
   const { pathname } = useLocation()
@@ -20,6 +21,7 @@ export function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <WhatsAppButton />
     </>
   )
 }

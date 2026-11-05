@@ -1,3 +1,5 @@
+import { recruitmentConfig } from '../config/recruitment'
+
 export function Footer() {
   return (
     <footer className="footer">
@@ -9,6 +11,12 @@ export function Footer() {
           <p className="footer__meta-copy">
             © 2026 BEM FIKTI Universitas Gunadarma
           </p>
+          {recruitmentConfig.contactWhatsApp && (
+            <p className="footer__cp">
+              Narahubung oprec:{' '}
+              <a href={`https://wa.me/${recruitmentConfig.contactWhatsApp}`} target="_blank" rel="noopener noreferrer">0877-4053-0606 (WhatsApp)</a>
+            </p>
+          )}
           <p style={{ fontSize: 'var(--text-xs)', marginTop: 'var(--space-1)', color: 'rgba(255,255,255,0.35)' }}>
             Badan Eksekutif Mahasiswa Fakultas Ilmu Komputer dan Teknologi Informasi
           </p>

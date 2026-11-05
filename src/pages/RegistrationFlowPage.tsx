@@ -103,6 +103,11 @@ const REQ_BERKAS = [
   'Foto formal berpakaian rapi (format JPG/PNG).',
   'Scan atau foto KTM (Kartu Tanda Mahasiswa) aktif.',
   'Curriculum Vitae (CV) terbaru.',
+  'Portofolio, khusus pendaftar Departemen Media Komunikasi (Biro Media Kreatif, Biro Hubungan Masyarakat, dan Biro Pengembangan Teknologi Informasi).',
+]
+
+const REQ_KHUSUS = [
+  'Tidak ada persyaratan khusus. Cukup penuhi persyaratan umum dan siapkan berkas administrasi.',
 ]
 
 const REQ_TAMBAHAN = [
@@ -274,9 +279,18 @@ export function RegistrationFlowPage() {
                 </span>
                 Persyaratan Khusus
               </h3>
-              <div style={{ padding: 'var(--space-4)', background: 'var(--surface-subtle)', borderRadius: 'var(--radius-md)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-                Persyaratan khusus per departemen akan diumumkan bersama jadwal resmi. Pantau Instagram <strong style={{ color: 'var(--text-secondary)' }}>@ug_bemfikti</strong> untuk informasi terbaru.
-              </div>
+              <ul className="req-list">
+                {REQ_KHUSUS.map((r, i) => (
+                  <li key={i} className="req-item">
+                    <span className="req-check" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="m5 12 4.5 4.5L19 7" />
+                      </svg>
+                    </span>
+                    {r}
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Ketentuan Tambahan */}

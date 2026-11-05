@@ -22,6 +22,9 @@ export const recruitmentConfig = {
   /** URL Google Form pendaftaran resmi (isi saat form sudah aktif) */
   registrationFormUrl: "https://forms.gle/3WK5AWmXex7y2gmb9" as string | null,
 
+  /** Narahubung (CP) WhatsApp, format internasional tanpa + */
+  contactWhatsApp: "6287740530606" as string | null,
+
   /** Jam 00:00 berarti hanya tanggal yang ditampilkan */
   announcementDates: {
     resultAnnouncement: "2026-11-12T00:00:00+07:00" as string | null,
@@ -37,6 +40,7 @@ export interface RecruitmentConfig {
   registrationStart: string | null;
   registrationEnd: string | null;
   registrationFormUrl: string | null;
+  contactWhatsApp: string | null;
   announcementDates: {
     resultAnnouncement: string | null;
     offlineInterview: string | null;

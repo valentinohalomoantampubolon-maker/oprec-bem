@@ -2509,3 +2509,37 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); line-height: 1.15; }
 @media (max-width: 767px) {
   .dep-grid--home { grid-template-columns: 1fr; }
 }
+
+/* ── Tombol WhatsApp narahubung (selalu terlihat) ─────────────── */
+.wa-float {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 150;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 3.25rem;
+  padding: 0 1.25rem 0 1rem;
+  border-radius: 999px;
+  background: #4B28C4;
+  color: #FFFFFF;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(5, 6, 8, 0.25);
+  transition: transform 150ms ease;
+}
+.wa-float:hover { transform: translateY(-2px); }
+.wa-float:focus-visible { outline: 3px solid #C13FFB; outline-offset: 3px; }
+@media (max-width: 767px) {
+  .wa-float { width: 3.5rem; height: 3.5rem; padding: 0; justify-content: center; }
+  .wa-float__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+}
+
+.footer__cp { font-size: var(--text-sm); margin-top: var(--space-2); color: rgba(255,255,255,0.75); }
+.footer__cp a { color: #FFFFFF; font-weight: 600; text-decoration: underline; text-underline-offset: 0.2em; }
+
+/* Catatan Instagram di hero: bisa diklik */
+.hero__note--link { align-items: center; text-decoration: none; width: fit-content; color: rgba(255,255,255,0.75); transition: background 150ms ease, border-color 150ms ease; }
+.hero__note--link strong { text-decoration: underline; text-underline-offset: 0.2em; }
+.hero__note--link:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: #fff; }
