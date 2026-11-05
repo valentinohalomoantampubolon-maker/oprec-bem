@@ -2543,3 +2543,6 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); line-height: 1.15; }
 .hero__note--link { align-items: center; text-decoration: none; width: fit-content; color: rgba(255,255,255,0.75); transition: background 150ms ease, border-color 150ms ease; }
 .hero__note--link strong { text-decoration: underline; text-underline-offset: 0.2em; }
 .hero__note--link:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: #fff; }
+.hero__note-ig { display: inline-flex; align-items: center; color: #FFFFFF; flex-shrink: 0; transition: color 150ms ease; }
+.hero__note-ig svg { width: 20px; height: 20px; }
+.hero__note--link:hover .hero__note-ig { color: #C13FFB; }
