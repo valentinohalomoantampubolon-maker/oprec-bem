@@ -14,7 +14,6 @@ export function HomePage() {
     document.title = 'OPREC Staff BEM FIKTI UG 2026/2027 · Kabinet Revolusi Karsa'
   }, [])
   const heroRef = useFadeIn<HTMLDivElement>()
-  const statsRef = useFadeIn<HTMLDivElement>()
   const whyRef = useFadeIn<HTMLDivElement>()
   const roleRef = useFadeIn<HTMLDivElement>()
   const deptRef = useFadeIn<HTMLDivElement>()
@@ -141,7 +140,7 @@ export function HomePage() {
               <div className="panel__header">
                 <div>
                   <p className="panel__label">Posisi yang Dibuka</p>
-                  <p className="panel__count">7 Departemen · 15 Biro · 2 Posisi Khusus</p>
+                  <p className="panel__count">7 Departemen · 15 Biro · 2 Posisi Lainnya</p>
                 </div>
               </div>
               <ul className="panel__list">
@@ -168,7 +167,7 @@ export function HomePage() {
                     }}
                   >
                     <p style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)' }}>
-                      Posisi Khusus
+                      Posisi Lainnya
                     </p>
                   </div>
                 </li>
@@ -177,7 +176,6 @@ export function HomePage() {
                     <Link to={`/posisi/${pos.slug}`} className="panel__item">
                       <span className="panel__item-name">{pos.name}</span>
                       <span className="panel__item-meta">
-                        <span>1 orang</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                           <path d="m9 6 6 6-6 6" />
                         </svg>
@@ -192,28 +190,6 @@ export function HomePage() {
       </section>
 
       {/* ── 2. STATS BAR ── */}
-      <section aria-label="Statistik organisasi" ref={statsRef}>
-        <div className="stats-bar">
-          <div className="stats-bar__inner fade-in">
-            <div className="stat-item">
-              <span className="stat-label">Departemen</span>
-              <span className="stat-value">7</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-label">Biro</span>
-              <span className="stat-value">15</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-label">Posisi Khusus</span>
-              <span className="stat-value">2</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-label">Pilar Kabinet</span>
-              <span className="stat-value stat-value--purple">4</span>
-            </div>
-          </div>
-        </div>
-      </section>
 
 
       {/* ── 3. MENGAPA BERGABUNG ── */}
@@ -269,9 +245,9 @@ export function HomePage() {
           <div className="role-grid">
             <div>
               <p className="eyebrow fade-in">Struktur Organisasi</p>
-              <h2 id="role-title" className="section-title fade-in">Peran Staf Biro</h2>
+              <h2 id="role-title" className="section-title fade-in">Posisi yang Dibuka</h2>
               <p className="section-body fade-in">
-                Staf biro adalah eksekutor lapangan yang menjalankan program kerja sehari-hari, mendukung kepala biro, dan memastikan kegiatan berjalan dari awal sampai selesai.
+                Open recruitment ini membuka tiga posisi: Staf Biro yang menjalankan program kerja di setiap biro, serta Staf Sekretaris dan Staf Bendahara yang mendukung Sekretaris Umum dan Bendahara Umum dalam administrasi dan keuangan organisasi.
               </p>
             </div>
             <ol className="role-list" aria-label="Struktur organisasi BEM FIKTI">
@@ -288,9 +264,27 @@ export function HomePage() {
                   n: '3', variant: 'dark', title: 'Staf Biro', badge: 'Posisi dibuka',
                   desc: 'Eksekutor lapangan yang menjalankan tugas teknis harian, kepanitiaan, dan operasional kegiatan biro dari awal sampai selesai.',
                 },
+                {
+                  n: 'sekretaris', variant: 'dark', title: 'Staf Sekretaris', badge: 'Posisi dibuka',
+                  desc: 'Pendukung Sekretaris Umum dalam tata kelola birokrasi dan administrasi organisasi, mulai dari persuratan, notulensi rapat, hingga pengarsipan dokumen.',
+                },
+                {
+                  n: 'bendahara', variant: 'dark', title: 'Staf Bendahara', badge: 'Posisi dibuka',
+                  desc: 'Pendukung Bendahara Umum dalam mengelola sirkulasi uang masuk dan uang keluar BEM, termasuk pencatatan dan laporan keuangan.',
+                },
               ].map((r) => (
                 <li key={r.n} className="role-item fade-in">
-                  <span className={`role-num role-num--${r.variant}`} aria-hidden="true">{r.n}</span>
+                  {/^\d+$/.test(r.n) ? (
+                    <span className={`role-num role-num--${r.variant}`} aria-hidden="true">{r.n}</span>
+                  ) : (
+                    <span className={`role-num role-num--${r.variant} role-num--icon`} aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" focusable="false">
+                        {r.n === 'sekretaris'
+                          ? <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5ZM14 3v5h5M9 13h6M9 17h6" />
+                          : <><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M3 10h18M16 15h2" /></>}
+                      </svg>
+                    </span>
+                  )}
                   <div>
                     <p className="role-title">
                       {r.title}
@@ -308,29 +302,7 @@ export function HomePage() {
       {/* ── 5. DEPARTEMEN PREVIEW ── */}
       <section className="section" aria-labelledby="dep-preview-title" ref={deptRef}>
         <div className="container">
-          <p className="eyebrow fade-in">7 Departemen</p>
           <h2 id="dep-preview-title" className="section-title fade-in">Pilih Jalurmu</h2>
-          <p className="section-body fade-in">
-            Setiap departemen membuka peluang yang berbeda. Temukan yang paling sesuai dengan minat dan kompetensimu.
-          </p>
-
-          {/* All-biro announcement banner */}
-          <div className="all-biro-banner fade-in" role="note">
-            <div className="all-biro-banner__icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
-                <path d="M22 8.5a8.5 8.5 0 1 1-17 0 8.5 8.5 0 0 1 17 0Z" />
-                <path d="M6 12h.01M12 12h.01M18 12h.01" />
-              </svg>
-            </div>
-            <div className="all-biro-banner__content">
-              <p className="all-biro-banner__title">
-                Open Recruitment Staff BEM FIKTI 2026/2027 dibuka untuk seluruh biro.
-              </p>
-              <p className="all-biro-banner__body">
-                Kamu bisa mendaftar ke biro mana saja di antara 7 departemen yang tersedia, sesuai minat dan kompetensimu.
-              </p>
-            </div>
-          </div>
 
           <div className="dep-grid dep-grid--home">
             {departments.map((dep) => (
@@ -359,10 +331,10 @@ export function HomePage() {
               </article>
             ))}
             <article className="card dep-card dep-card--special fade-in">
-              <span className="dep-card__tag dep-card__tag--special">Posisi Khusus</span>
-              <h3 className="dep-card__name">Sekretaris &amp; Bendahara</h3>
+              <span className="dep-card__tag dep-card__tag--special">Posisi Lainnya</span>
+              <h3 className="dep-card__name">Staf Sekretaris &amp; Staf Bendahara</h3>
               <p className="dep-card__tagline">Menjaga administrasi dan keuangan BEM FIKTI</p>
-              <ul className="dep-card__biro" aria-label="Posisi khusus">
+              <ul className="dep-card__biro" aria-label="Posisi lainnya">
                 {specialPositions.map((pos) => (
                   <li key={pos.id} className="dep-card__biro-item">
                     <span className="dep-card__biro-dot" aria-hidden="true" />

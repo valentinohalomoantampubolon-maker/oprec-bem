@@ -24,7 +24,7 @@ const stages: Stage[] = [
   },
   {
     num: '02',
-    title: 'Pengumuman Hasil Oprec',
+    title: 'Pengumuman Hasil Seleksi Berkas',
     description: 'Pengumuman calon staff yang lolos tahap pendaftaran dan berhak mengikuti wawancara.',
     dateKey: 'resultAnnouncement',
   },
@@ -88,24 +88,18 @@ const REQ_UMUM = [
   'Mahasiswa angkatan 2024 atau 2025.',
   'Tidak sedang menjalani cuti akademik.',
   'Tidak sedang menjalani sanksi akademik maupun disiplin dari fakultas atau universitas.',
-  'Tidak merangkap jabatan sebagai ketua atau pengurus inti organisasi kemahasiswaan lain yang waktunya bertabrakan dengan BEM.',
   'Bersedia mengikuti seluruh rangkaian seleksi dan mematuhi keputusan panitia seleksi.',
 ]
 
 const REQ_BERKAS = [
   'Formulir pendaftaran online yang sudah diisi lengkap.',
-  'Foto formal berpakaian rapi (format JPG/PNG).',
-  'Scan atau foto KTM (Kartu Tanda Mahasiswa) aktif.',
   'Curriculum Vitae (CV) terbaru.',
-  'Portofolio, khusus pendaftar Departemen Media Komunikasi (Biro Media Kreatif, Biro Hubungan Masyarakat, dan Biro Pengembangan Teknologi Informasi).',
-]
-
-const REQ_KHUSUS = [
-  'Tidak ada persyaratan khusus. Cukup penuhi persyaratan umum dan siapkan berkas administrasi.',
+  'Rangkuman nilai di Studentsite.',
+  'KRS.',
+  'Portofolio, khusus pendaftar Departemen Media Komunikasi (Biro Media Kreatif, Biro Hubungan Masyarakat, dan Biro Teknologi Informasi).',
 ]
 
 const REQ_TAMBAHAN = [
-  'Peserta hanya dapat mendaftar pada satu departemen.',
   'Keputusan panitia seleksi bersifat final dan tidak dapat diganggu gugat.',
   'Peserta yang tidak memenuhi persyaratan secara otomatis dinyatakan gugur.',
 ]
@@ -130,9 +124,6 @@ export function RegistrationFlowPage() {
             <span className="breadcrumb__current" aria-current="page">Alur Pendaftaran</span>
           </nav>
           <h1 className="page-hero__title">Alur Pendaftaran</h1>
-          <p className="page-hero__body">
-            Empat tahapan seleksi Staff BEM FIKTI 2026/2027.
-          </p>
         </div>
       </div>
 
@@ -263,39 +254,15 @@ export function RegistrationFlowPage() {
               </ul>
             </div>
 
-            {/* Persyaratan Khusus (placeholder) */}
-            <div className="req-panel fade-in">
-              <h3 className="req-panel__title">
-                <span className="req-panel__icon" aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false">
-                    <path d="M9 12h6M9 16h6M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z" />
-                  </svg>
-                </span>
-                Persyaratan Khusus
-              </h3>
-              <ul className="req-list">
-                {REQ_KHUSUS.map((r, i) => (
-                  <li key={i} className="req-item">
-                    <span className="req-check" aria-hidden="true">
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="m5 12 4.5 4.5L19 7" />
-                      </svg>
-                    </span>
-                    {r}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Ketentuan Tambahan */}
-            <div className="req-panel fade-in">
+            {/* Ketentuan */}
+            <div className="req-panel req-panel--wide fade-in">
               <h3 className="req-panel__title">
                 <span className="req-panel__icon" aria-hidden="true">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false">
                     <circle cx="12" cy="12" r="9" /><path d="M12 8v4M12 16h.01" />
                   </svg>
                 </span>
-                Ketentuan Tambahan
+                Ketentuan
               </h3>
               <ul className="req-list">
                 {REQ_TAMBAHAN.map((r, i) => (

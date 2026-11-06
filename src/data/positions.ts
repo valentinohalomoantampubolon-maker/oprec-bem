@@ -13,10 +13,10 @@ export const specialPositions: Position[] = [
   {
     id: 'sekretaris',
     slug: 'sekretaris',
-    name: 'Sekretaris',
-    shortName: 'Sekretaris',
+    name: 'Staf Sekretaris',
+    shortName: 'Staf Sekretaris',
     description:
-      'Posisi Sekretaris dibuka untuk mendukung kinerja Sekretaris Umum BEM FIKTI dalam mengelola administrasi, surat-menyurat, dan dokumentasi resmi organisasi selama periode 2026/2027.',
+      'Posisi Staf Sekretaris dibuka untuk mendukung kinerja Sekretaris Umum BEM FIKTI dalam mengelola administrasi, surat-menyurat, dan dokumentasi resmi organisasi selama periode 2026/2027.',
     duties: [
       'Membantu Sekretaris Umum dalam pengelolaan administrasi dan kesekretariatan organisasi.',
       'Menyusun, mengarsipkan, dan mendistribusikan surat resmi maupun dokumen internal BEM FIKTI.',
@@ -29,10 +29,10 @@ export const specialPositions: Position[] = [
   {
     id: 'bendahara',
     slug: 'bendahara',
-    name: 'Bendahara',
-    shortName: 'Bendahara',
+    name: 'Staf Bendahara',
+    shortName: 'Staf Bendahara',
     description:
-      'Posisi Bendahara dibuka untuk mendukung kinerja Bendahara Umum BEM FIKTI dalam mengelola keuangan, pelaporan anggaran, dan administrasi kas organisasi selama periode 2026/2027.',
+      'Posisi Staf Bendahara dibuka untuk mendukung kinerja Bendahara Umum BEM FIKTI dalam mengelola keuangan, pelaporan anggaran, dan administrasi kas organisasi selama periode 2026/2027.',
     duties: [
       'Membantu Bendahara Umum dalam pencatatan dan pengelolaan keuangan organisasi.',
       'Menyusun laporan keuangan program kerja dan kegiatan BEM FIKTI secara berkala.',

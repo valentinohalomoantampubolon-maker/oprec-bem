@@ -43,17 +43,15 @@ export function DepartmentDetailPage() {
           </span>
 
           <h1 className="page-hero__title">{dep.name}</h1>
-          <p className="page-hero__body">{dep.tagline}</p>
         </div>
       </div>
 
       {/* Content */}
       <div ref={ref}>
         {/* About */}
-        <section className="section section-bg-white" aria-labelledby={`about-${dep.id}`}>
+        <section className="section section-bg-white" aria-label={`Tentang ${dep.name}`}>
           <div className="container">
             <p className="eyebrow fade-in">Tentang Departemen</p>
-            <h2 id={`about-${dep.id}`} className="section-title fade-in">{dep.name}</h2>
             <p className="section-body fade-in" style={{ maxWidth: '72ch' }}>{dep.about}</p>
 
             {/* Department-level programs (e.g. GEMA BUMI for SosMas) */}

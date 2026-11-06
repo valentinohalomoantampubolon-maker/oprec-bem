@@ -378,12 +378,12 @@ export const departments: Department[] = [
         ],
       },
       {
-        name: "Biro Pengembangan Teknologi Informasi",
+        name: "Biro Teknologi Informasi",
         description:
           "Mengembangkan, mengelola, dan mengoptimalkan pemanfaatan teknologi informasi berbasis website untuk mendukung kebutuhan organisasi serta mahasiswa FIKTI Universitas Gunadarma: pengembangan dan pengelolaan website BEM FIKTI, kolaborasi dengan biro/departemen lain, serta penerapan inovasi teknologi.",
         programs: [
           {
-            name: "PTI Services",
+            name: "Teknologi Informasi Service",
             description:
               "Wadah bagi biro/departemen yang ingin program kerjanya dipublikasikan lewat website (target minimal 5 website).",
           },
@@ -393,7 +393,7 @@ export const departments: Department[] = [
               "Pengkajian ulang tata letak, fungsi, dan responsivitas website agar efisien dan aksesibel lintas perangkat.",
           },
           {
-            name: "USaP (Upgrading Skill at PTI)",
+            name: "Upgrading Skill at Teknologi Informasi",
             description:
               "Sharing session web development untuk internal biro, 2× per bulan.",
           },

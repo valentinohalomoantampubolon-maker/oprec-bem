@@ -58,7 +58,7 @@ export function PositionDetailPage() {
             className="dep-card__tag dep-card__tag--special"
             style={{ margin: 'var(--space-3) 0 var(--space-4)', display: 'block', width: 'fit-content', background: 'var(--blue-100)', color: 'var(--blue-900)', borderColor: 'transparent' }}
           >
-            Posisi Khusus
+            Posisi Lainnya
           </span>
 
           <h1 className="page-hero__title">{position.name}</h1>
@@ -184,7 +184,7 @@ export function PositionDetailPage() {
                         >
                           <path d="m9 6 6 6-6 6" />
                         </svg>
-                        {s.charAt(0).toUpperCase() + s.slice(1)}
+                        {s === 'sekretaris' ? 'Staf Sekretaris' : 'Staf Bendahara'}
                       </Link>
                     ))}
                   </div>

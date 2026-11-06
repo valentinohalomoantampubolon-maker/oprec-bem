@@ -56,7 +56,7 @@ export function DepartmentsPage() {
       count: departments.filter((d) => d.category === 'Eksternal').length,
     },
     {
-      label: 'Posisi Khusus',
+      label: 'Posisi Lainnya',
       key: 'posisi-khusus',
       count: specialPositions.length,
     },
@@ -83,7 +83,7 @@ export function DepartmentsPage() {
           </nav>
           <h1 className="page-hero__title">Departemen BEM FIKTI</h1>
           <p className="page-hero__body">
-            7 departemen dengan 15 biro, ditambah posisi Sekretaris dan Bendahara.
+            7 departemen dengan 15 biro, ditambah posisi Staf Sekretaris dan Staf Bendahara.
             Temukan departemen atau posisi yang paling sesuai dengan minatmu.
           </p>
         </div>
@@ -176,7 +176,7 @@ export function DepartmentsPage() {
             {showPosisiKhusus && (
               <div className="posisi-khusus-section">
                 <h2 className="dep-section-label dep-section-label--special">
-                  Posisi Khusus
+                  Posisi Lainnya
                 </h2>
                 <p className="posisi-khusus-section__desc">
                   Dua posisi ini berada di luar struktur departemen dan mendukung langsung
@@ -191,7 +191,7 @@ export function DepartmentsPage() {
                       aria-label={`Posisi ${pos.name}`}
                     >
                       <span className="open-position-card__badge open-position-card__badge--special">
-                        Posisi Khusus
+                        Posisi Lainnya
                       </span>
                       <h3 className="open-position-card__name">{pos.name}</h3>
                       <p className="open-position-card__duty">
