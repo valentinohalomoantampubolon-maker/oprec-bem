@@ -29,7 +29,6 @@ export const recruitmentConfig = {
   announcementDates: {
     resultAnnouncement: "2026-11-12T00:00:00+07:00" as string | null,
     offlineInterview: "2026-11-15T00:00:00+07:00" as string | null,
-    staffBidding: "2026-11-15T00:00:00+07:00" as string | null,
     finalAnnouncement: "2026-11-16T00:00:00+07:00" as string | null,
   },
 } as const satisfies RecruitmentConfig;
@@ -44,7 +43,6 @@ export interface RecruitmentConfig {
   announcementDates: {
     resultAnnouncement: string | null;
     offlineInterview: string | null;
-    staffBidding: string | null;
     finalAnnouncement: string | null;
   };
 }

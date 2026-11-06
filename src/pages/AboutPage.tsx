@@ -57,14 +57,37 @@ export function AboutPage() {
                 BEM FIKTI berperan sebagai representasi mahasiswa sekaligus mitra strategis institusi dalam menjalankan tri dharma perguruan tinggi, khususnya pada dimensi pengabdian kepada masyarakat dan kehidupan kemahasiswaan.
               </p>
               <p className="fade-in">
-                Pada periode 2026/2027, BEM FIKTI mengusung kabinet bertajuk <strong>Revolusi Karsa</strong> dengan semangat "#Revolusi Pergerakan, Ciptakan Perubahan", mendorong mahasiswa untuk bergerak aktif, berpikir kritis, dan memberi dampak nyata bagi kampus maupun masyarakat.
+                Pada periode 2026/2027, BEM FIKTI mengusung <strong>Kabinet Revolusi Karsa</strong> dengan semangat "#Revolusi Pergerakan, Ciptakan Perubahan".
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Makna Kabinet */}
+        <section className="section section-bg-subtle" aria-labelledby="makna-title">
+          <div className="container">
+            <p className="eyebrow fade-in">Filosofi</p>
+            <h2 id="makna-title" className="section-title fade-in">Makna Kabinet Revolusi Karsa</h2>
+            <dl className="makna-terms fade-in">
+              <div>
+                <dt>Revolusi</dt>
+                <dd>Keberanian meninggalkan kebiasaan lama.</dd>
+              </div>
+              <div>
+                <dt>Karsa</dt>
+                <dd>Kehendak tulus untuk bergerak.</dd>
+              </div>
+            </dl>
+            <div className="about-content">
+              <p className="fade-in">
+                Sebuah organisasi tidak runtuh oleh waktu, melainkan ketika arah dan penerusnya hilang. Itulah yang dialami BEM FIKTI Universitas Gunadarma satu periode kebelakang. Dari kekosongan itu, Kabinet Revolusi Karsa lahir dari mahasiswa yang menolak berdiam diri. Revolusi adalah keberanian meninggalkan kebiasaan lama dan Karsa adalah kehendak tulus untuk bergerak. Dengan keduanya, kami membangun ulang BEM FIKTI Universitas Gunadarma agar manfaatnya kembali dirasakan seluruh mahasiswa.
               </p>
             </div>
           </div>
         </section>
 
         {/* Visi Misi — dengan foto split */}
-        <section className="section" aria-labelledby="visimisi-title">
+        <section className="section section-bg-white" aria-labelledby="visimisi-title">
           <div className="container">
             <p className="eyebrow fade-in">Arah Gerak</p>
             <h2 id="visimisi-title" className="section-title fade-in">Visi dan Misi</h2>
@@ -77,7 +100,7 @@ export function AboutPage() {
                 <div className="visi-card visi-card--green">
                   <p className="visi-card__label">Visi</p>
                   <h3 className="visi-card__title">
-                    Mewujudkan BEM FIKTI yang berdampak, inklusif, dan adaptif dalam memberdayakan mahasiswa FIKTI
+                    Menjadikan Badan Eksekutif Mahasiswa Fakultas Ilmu Komputer dan Teknologi Informasi sebagai simpul kebersamaan yang solid dan suportif dalam meningkatkan potensi mahasiswa serta menggerakkan aksi nyata yang berdampak bagi masyarakat.
                   </h3>
                 </div>
 
@@ -86,11 +109,11 @@ export function AboutPage() {
                   <p className="visi-card__label">Misi</p>
                   <ul className="visi-card__list" role="list">
                     {[
-                      'Membangun ekosistem organisasi yang inklusif dan suportif bagi seluruh mahasiswa FIKTI.',
-                      'Memperkuat layanan advokasi dan aspirasi mahasiswa secara responsif dan transparan.',
-                      'Mendorong pengembangan potensi mahasiswa melalui kegiatan akademik, seni, olahraga, dan sosial.',
-                      'Menjalin kemitraan strategis dengan berbagai pihak untuk memperluas dampak program BEM FIKTI.',
-                      'Menginisiasi aksi nyata yang memanfaatkan kompetensi teknologi informasi untuk masyarakat.',
+                      'Membangun ruang kebersamaan yang inklusif, suportif, dan berlandaskan kekeluargaan untuk mempererat solidaritas mahasiswa.',
+                      'Menyelenggarakan program pengembangan kapasitas diri guna mengoptimalkan potensi, kepemimpinan, dan daya saing mahasiswa.',
+                      'Menghadirkan pelayanan advokasi yang aktif, responsif, dan transparan dalam memperjuangkan kebutuhan serta aspirasi mahasiswa.',
+                      'Memperkuat kolaborasi yang sinergis dan berkelanjutan bersama seluruh elemen organisasi maupun lingkungan kampus.',
+                      'Menggerakkan aksi kepedulian sosial yang solutif dan aplikatif demi memberikan dampak nyata bagi masyarakat.',
                     ].map((misi, i) => (
                       <li key={i} className="visi-card__list-item">
                         <span className="visi-card__list-bullet" aria-hidden="true" />
@@ -122,10 +145,10 @@ export function AboutPage() {
 
             <div className="pillar-grid">
               {[
-                { num: '01', label: 'Kebersamaan', color: 'var(--blue-700)', desc: 'Membangun lingkungan organisasi yang inklusif, suportif, dan berlandaskan kekeluargaan.' },
-                { num: '02', label: 'Advokasi', color: 'var(--blue-700)', desc: 'Menghadirkan layanan advokasi aspirasi yang responsif dan transparan bagi mahasiswa FIKTI.' },
-                { num: '03', label: 'Potensi', color: 'var(--green-700)', desc: 'Memfasilitasi pengembangan keahlian, kepemimpinan, dan kreativitas mahasiswa.' },
-                { num: '04', label: 'Aksi Nyata', color: 'var(--green-700)', desc: 'Menginisiasi kepedulian sosial yang solutif melalui pemanfaatan ilmu teknologi mahasiswa.' },
+                { num: '01', label: 'Kebersamaan', color: 'var(--blue-700)', desc: 'Membangun lingkungan organisasi yang inklusif, suportif, dan berlandaskan kekeluargaan untuk mempererat persatuan antarmahasiswa FIKTI.' },
+                { num: '02', label: 'Advokasi', color: 'var(--blue-700)', desc: 'Menghadirkan layanan advokasi aspirasi yang responsif dan transparan, sekaligus memperkuat kolaborasi harmonis bersama.' },
+                { num: '03', label: 'Potensi', color: 'var(--green-700)', desc: 'Memfasilitasi pengembangan kapasitas mahasiswa melalui peningkatan keahlian, kepemimpinan, dan kreativitas guna mencetak mahasiswa berdaya saing.' },
+                { num: '04', label: 'Aksi Nyata', color: 'var(--green-700)', desc: 'Menginisiasi kepedulian sosial yang solutif dan aplikatif melalui pemanfaatan ilmu teknologi mahasiswa demi memberi dampak bagi masyarakat.' },
               ].map((p) => (
                 <div key={p.num} className="card pillar-card fade-in">
                   <p style={{ fontFamily: 'var(--font-heading)', fontSize: 'var(--text-3xl)', fontWeight: 700, color: p.color, lineHeight: 1, marginBottom: 'var(--space-3)' }}>

@@ -2546,3 +2546,10 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); line-height: 1.15; }
 .hero__note-ig { display: inline-flex; align-items: center; color: #FFFFFF; flex-shrink: 0; transition: color 150ms ease; }
 .hero__note-ig svg { width: 20px; height: 20px; }
 .hero__note--link:hover .hero__note-ig { color: #C13FFB; }
+
+/* Makna kabinet (halaman Tentang) */
+.makna-terms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); margin-top: var(--space-6); max-width: 68ch; }
+.makna-terms > div { padding: var(--space-4) var(--space-5); background: #FFFFFF; border: 1px solid var(--border); border-radius: var(--radius-md); }
+.makna-terms dt { font-family: var(--font-heading); font-size: var(--text-xl); font-weight: 700; color: var(--blue-700); }
+.makna-terms dd { margin-top: var(--space-1); color: var(--text-secondary); }
+@media (max-width: 600px) { .makna-terms { grid-template-columns: 1fr; } }

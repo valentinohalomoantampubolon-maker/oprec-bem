@@ -36,12 +36,6 @@ const stages: Stage[] = [
   },
   {
     num: '04',
-    title: 'Bidding Staff',
-    description: 'Penempatan calon staff ke biro oleh Kepala Biro dan Kepala Departemen, dilakukan setelah wawancara selesai.',
-    dateKey: 'staffBidding',
-  },
-  {
-    num: '05',
     title: 'Pengumuman Final',
     description: 'Pengumuman akhir calon staff yang dinyatakan lolos menjadi pengurus BEM FIKTI.',
     dateKey: 'finalAnnouncement',
@@ -137,7 +131,7 @@ export function RegistrationFlowPage() {
           </nav>
           <h1 className="page-hero__title">Alur Pendaftaran</h1>
           <p className="page-hero__body">
-            Lima tahapan seleksi Staff BEM FIKTI 2026/2027. Jadwal akan diperbarui setelah diumumkan secara resmi.
+            Empat tahapan seleksi Staff BEM FIKTI 2026/2027.
           </p>
         </div>
       </div>

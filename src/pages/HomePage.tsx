@@ -217,7 +217,7 @@ export function HomePage() {
           <p className="eyebrow fade-in">Alasan Bergabung</p>
           <h2 id="why-title" className="section-title fade-in">Mengapa Bergabung BEM FIKTI?</h2>
           <p className="section-body fade-in">
-            Organisasi menjadi sarana nyata untuk mengasah kepemimpinan, komunikasi, dan skill praktis yang melengkapi kompetensi akademik agar siap bersaing setelah lulus.
+            Organisasi menjadi sarana nyata bagi mahasiswa untuk mengasah kepemimpinan, komunikasi, dan berbagai skill praktis yang melengkapi kompetensi akademik perkuliahan agar siap bersaing.
           </p>
 
           <ul className="pillar-grid" role="list">
@@ -229,7 +229,7 @@ export function HomePage() {
               },
               {
                 num: 'Pilar 2', title: 'Advokasi',
-                body: 'Menghadirkan layanan advokasi aspirasi yang responsif dan transparan, sekaligus memperkuat kolaborasi harmonis bersama civitas akademika.',
+                body: 'Menghadirkan layanan advokasi aspirasi yang responsif dan transparan, sekaligus memperkuat kolaborasi harmonis bersama.',
                 icon: <path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1ZM16 8.5a5 5 0 0 1 0 7M19 5.5a9 9 0 0 1 0 13" />,
               },
               {
@@ -239,7 +239,7 @@ export function HomePage() {
               },
               {
                 num: 'Pilar 4', title: 'Aksi Nyata',
-                body: 'Menginisiasi kepedulian sosial yang solutif dan aplikatif melalui pemanfaatan ilmu teknologi demi memberi dampak bagi masyarakat sekitar.',
+                body: 'Menginisiasi kepedulian sosial yang solutif dan aplikatif melalui pemanfaatan ilmu teknologi mahasiswa demi memberi dampak bagi masyarakat.',
                 icon: <path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10Z" />,
               },
             ].map((p) => (
@@ -273,11 +273,11 @@ export function HomePage() {
               {[
                 {
                   n: '1', variant: 'light', title: 'Kepala Departemen', badge: null,
-                  desc: 'Pemimpin departemen yang duduk di jajaran Badan Pengurus Harian untuk merumuskan arah kebijakan kabinet dan membimbing kepala biro.',
+                  desc: 'Pemimpin departemen yang duduk di jajaran Badan Pengurus Harian untuk ikut merumuskan arah kebijakan kabinet, sekaligus memimpin strategi dan membimbing kepala biro di bawahnya.',
                 },
                 {
                   n: '2', variant: 'light', title: 'Kepala Biro', badge: null,
-                  desc: 'Manajer operasional yang menerjemahkan arahan Kepala Departemen ke rencana teknis, membagi jobdesk, dan memantau kinerja staf.',
+                  desc: 'Manajer operasional yang menerjemahkan arahan Kepala Departemen ke rencana teknis, membagi tugas kerja (jobdesk), dan memantau kinerja stafnya.',
                 },
                 {
                   n: '3', variant: 'dark', title: 'Staf Biro', badge: 'Posisi dibuka',
@@ -387,10 +387,10 @@ export function HomePage() {
 
           <ul className="program-grid" role="list">
             {[
-              { num: '01', title: 'Hero of Education and Social', desc: 'Pengabdian masyarakat di desa yang membutuhkan perhatian dan memiliki keterbatasan sosial.' },
-              { num: '02', title: 'FIKTI Space 5.0', desc: 'Kompetisi olahraga, seni, dan esports untuk meningkatkan kreativitas dan sportivitas mahasiswa.' },
-              { num: '03', title: 'TechnoFair 13.0', desc: 'Seminar, workshop, dan kompetisi di bidang perkembangan industri teknologi informasi.' },
-              { num: '04', title: 'Internship with BEM FIKTI', desc: 'Program yang memfasilitasi mahasiswa untuk terlibat langsung dalam proyek dan alur kerja BEM FIKTI.' },
+              { num: '01', title: 'Hero of Education and Social XII', desc: 'Pengabdian masyarakat yang dilaksanakan di suatu desa yang membutuhkan perhatian dan memiliki keterbatasan sosial.' },
+              { num: '02', title: 'FIKTI Space 5.0', desc: 'Wadah untuk meningkatkan kreativitas, sportivitas, dan kebersamaan di kalangan mahasiswa melalui berbagai kompetisi yang meliputi tiga bidang utama, yaitu olahraga, seni, dan esports.' },
+              { num: '03', title: 'TechnoFair 13.0', desc: 'Suatu rangkaian kegiatan seperti Seminar, Workshop, dan Kompetisi di bidang perkembangan industri teknologi informasi.' },
+              { num: '04', title: 'Internship with BEM FIKTI', desc: 'Program ini memfasilitasi mahasiswa untuk terlibat langsung dalam berbagai proyek dan memahami alur kerja BEM FIKTI secara komprehensif, guna mendorong minat serta partisipasi aktif mereka di organisasi.' },
             ].map((p) => (
               <li key={p.num} className="program-card fade-in">
                 <p className="program-card__num">{p.num}</p>
@@ -410,7 +410,7 @@ export function HomePage() {
             <div>
               <h2 id="cta-title" className="cta-band__title">Revolusi Pergerakan, Ciptakan Perubahan</h2>
               <p className="cta-band__body">
-                Gerak adalah jalan untuk menemukan arah kembali. Perubahan tidak menunggu keadaan membaik, melainkan lahir dari langkah pertama yang berani.
+                Jika arah yang hilang meruntuhkan organisasi, maka gerak adalah jalan untuk menemukannya kembali. Itulah makna “Revolusi Pergerakan, Ciptakan Perubahan”, bahwa perubahan tidak menunggu keadaan membaik, melainkan lahir dari langkah pertama yang berani.
               </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)', flexShrink: 0 }}>
