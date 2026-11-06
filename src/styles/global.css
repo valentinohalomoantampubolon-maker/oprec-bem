@@ -2553,3 +2553,17 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); line-height: 1.15; }
 .makna-terms dt { font-family: var(--font-heading); font-size: var(--text-xl); font-weight: 700; color: var(--blue-700); }
 .makna-terms dd { margin-top: var(--space-1); color: var(--text-secondary); }
 @media (max-width: 600px) { .makna-terms { grid-template-columns: 1fr; } }
+
+/* Tablet (768–1023px): pakai menu hamburger supaya navbar tidak terpotong */
+@media (max-width: 1023px) {
+  .nav-desktop { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-cta { display: none; }
+}
+/* Laptop kecil (1024–1199px): panel hero tidak terpotong */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .hero__inner { grid-template-columns: minmax(0, 1fr) 360px; gap: var(--space-8); }
+}
+.sidebar__cta { display: flex; width: 100%; justify-content: center; margin-bottom: var(--space-3); }
+a.sidebar__ig { display: block; text-decoration: none; }
+a.sidebar__ig strong { text-decoration: underline; text-underline-offset: 0.2em; }

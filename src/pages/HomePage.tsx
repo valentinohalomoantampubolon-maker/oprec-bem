@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useCountdown } from '../hooks/useCountdown'
 import { useFadeIn } from '../hooks/useFadeIn'
@@ -8,6 +9,10 @@ import { canRegister, closedCtaLabel } from '../config/status'
 
 export function HomePage() {
   const countdown = useCountdown()
+
+  useEffect(() => {
+    document.title = 'OPREC Staff BEM FIKTI UG 2026/2027 · Kabinet Revolusi Karsa'
+  }, [])
   const heroRef = useFadeIn<HTMLDivElement>()
   const statsRef = useFadeIn<HTMLDivElement>()
   const whyRef = useFadeIn<HTMLDivElement>()

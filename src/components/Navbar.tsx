@@ -47,7 +47,7 @@ export function Navbar() {
 
   /* Close on viewport widening past mobile */
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)')
+    const mq = window.matchMedia('(min-width: 1024px)')
     const onChange = (e: MediaQueryListEvent) => { if (e.matches) closeSidebar() }
     mq.addEventListener('change', onChange)
     return () => mq.removeEventListener('change', onChange)
@@ -189,9 +189,14 @@ export function Navbar() {
         </nav>
 
         <div className="sidebar__footer">
-          <p className="sidebar__ig">
+          {!ctaDisabled && ctaHref && (
+            <a href={ctaHref} target="_blank" rel="noopener noreferrer" className="btn btn-primary sidebar__cta">
+              Daftar Sekarang
+            </a>
+          )}
+          <a className="sidebar__ig" href="https://instagram.com/ug_bemfikti" target="_blank" rel="noopener noreferrer">
             Instagram: <strong>@ug_bemfikti</strong>
-          </p>
+          </a>
         </div>
       </div>
     </>
