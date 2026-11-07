@@ -23,7 +23,7 @@ export const recruitmentConfig = {
   registrationFormUrl: "https://forms.gle/3WK5AWmXex7y2gmb9" as string | null,
 
   /** Narahubung (CP) WhatsApp, format internasional tanpa + */
-  contactWhatsApp: "6287740530606" as string | null,
+  contactWhatsApp: "6285921783796" as string | null,
 
   /** Jam 00:00 berarti hanya tanggal yang ditampilkan */
   announcementDates: {
